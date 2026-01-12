@@ -1,6 +1,6 @@
 <?php
 $host = "my_mysql";
-$dbname = "login_system";
+$dbname = "db";
 $user = "root";       // adapte si besoin
 $pass = "root123";           // adapte si besoin
 

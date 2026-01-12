@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+
+body {
+    background: #2CF376;
+    background: linear-gradient(to bottom right, #2CF376 1%, #1D72EF 100%);
+}
+
+form{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 50%;
+    height: 50%;
+}
+
+
+/* Mobile Overwrite */
+@media (max-width: 980px) {
+
+}
