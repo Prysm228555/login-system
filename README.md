@@ -1,7 +1,7 @@
 # Login system
 Everything is configured to work in docker, you only need to build the compose and start the container.
 
-# DB setup for the login system
+## DB setup for the login system
 To create the database, please use this SQL request in phpMyAdmin.  
 The name of the database (db) can be changed but it must fit the "db.php" content, be sure this two matches, or you won't be able to create or use any account.  
 The table name and attributes cannot be modified without altering the system's operation.
@@ -21,7 +21,7 @@ CREATE TABLE users (
 ```  
 <br>
 
-# DB INFO
+## DB INFO
 ### id
 user id, automatic
 <br>
