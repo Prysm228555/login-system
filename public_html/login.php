@@ -60,10 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 true   // HttpOnly
             );
         };
-        header("Location: index.php");
+        header("Location: ./");
         exit;
     } else {
-        $error = "Email ou mot de passe incorrect";
+        if ($user["desactivated"]){
+            $error = "Ce compte est désactivé";
+        } else {
+            $error = "Email ou mot de passe incorrect";
+        }
     }
 }
 ?>
@@ -74,25 +78,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <title>Connexion</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./assets/icon.png" />
 </head>
 <body>
 
 <form method="post" class="login-form">
-    <h2>Connexion</h2>
+    <img src="./assets/icon.png" class="logo">
+    <h1>Connexion</h1>
 
     <?php if ($error): ?>
         <p class="error"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
 
+    <label for="mail">Adresse mail</label>
     <input type="email" name="mail" placeholder="Email" required>
+
+    <label for="password">Mot de passe</label>
     <input type="password" name="password" placeholder="Mot de passe" required>
-    <label>
-        <input type="checkbox" name="remember">
+
+    <label for="remember">
+        <input type="checkbox" name="remember" style="width: min-content;">
         Se souvenir de moi
     </label>
 
-    <button type="submit">Se connecter</button>
+    <div class="buttons">
+        <button type="button" class="register" id="btnRegister">Créer un compte</button>
+        <button type="submit" class="submit">Se connecter</button>
+    </div>
 </form>
+
+<script>
+  document.getElementById('btnRegister').addEventListener('click', function () {
+    window.location.href = './register.php';
+  });
+</script>
 
 </body>
 </html>

@@ -1,18 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    background: #2CF376;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: linear-gradient(to bottom right, #2CF376 1%, #1D72EF 100%);
 }
 
-form{
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 50%;
-    height: 50%;
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem;
+
+    background-color: rgba(243, 248, 255, 0.3);
+    width: min(90%, 400px);
+    padding: 2rem;
+    border-radius: 2rem;
+    border: 2px solid rgba(243, 248, 255, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+}
+
+form img.logo {
+    width: 7rem;
+    display: block;
+    margin: 0 auto;
+}
+
+form h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+form .error {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+form .success {
+    text-align: center;
+    font-weight: bold;
+}
+
+form input {
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+form input:focus {
+    outline: none;
+    border-color: #1D72EF;
+    box-shadow: 0 0 0 2px rgba(29,114,239,0.3);
+}
+
+form input,
+form .buttons {
+    width: 100%;
+}
+form .buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+form .buttons button {
+    background-color: rgba(243, 248, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    border: 2px solid rgba(243, 248, 255, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    transition: .3s;
+}
+form .buttons button.submit:hover,
+form .buttons button.register:hover {
+    transform: scale(1.1);
+    border: 0 rgba(243, 248, 255, 0.7);
+}
+form .buttons button.submit:hover {
+    background-color: #1D72EFB3;
+    color: white;
+}
+form .buttons button.register:hover {
+    background-color: #2CF376B3;
 }
 
 
-/* Mobile Overwrite */
-@media (max-width: 980px) {
+form h1,
+form p,
+form label {
+    margin: 0;
+}
 
+
+
+@media (max-width: 480px) {
+    form .buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }

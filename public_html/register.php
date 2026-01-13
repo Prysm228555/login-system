@@ -52,57 +52,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-        }
-        form {
-            width: 320px;
-            margin: 80px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        .error {
-            color: red;
-            text-align: center;
-        }
-        .success {
-            color: green;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./assets/icon.png" />
 </head>
 <body>
+    <form method="post">
+        <img src="./assets/icon.png" class="logo">
+        <h1>Inscription</h1>
 
-<form method="post">
-    <h2>Inscription</h2>
+        <?php if ($error): ?>
+            <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
 
-    <?php if ($error): ?>
-        <p class="error"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
+        <?php if ($success): ?>
+            <p class="success"><?= htmlspecialchars($success) ?></p>
+        <?php endif; ?>
 
-    <?php if ($success): ?>
-        <p class="success"><?= htmlspecialchars($success) ?></p>
-    <?php endif; ?>
+        <label for="name">Nom</label>
+        <input type="text" name="name" placeholder="Nom" required>
+        <label for="email">Email</label>
+        <input type="email" name="mail" placeholder="Email" required>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <label for="password_confirm">Confirmer le mot de passe</label>
+        <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" required>
 
-    <input type="text" name="name" placeholder="Nom" required>
-    <input type="email" name="mail" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Mot de passe" required>
-    <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" required>
+        <label for="remember">
+            <input type="checkbox" name="remember" style="width: min-content;">
+            Se souvenir de moi
+        </label>
 
-    <button type="submit">Créer le compte</button>
+        <div class="buttons">
+            <button type="button" class="register" id="btnRegister">J'ai un compte</button>
+            <button type="submit" class="submit">S'inscrire</button>
+        </div>
+    </form>
 
-    <p style="text-align:center;">
-        <a href="login.php">Déjà un compte ? Connexion</a>
-    </p>
-</form>
-
+    <script>
+        document.getElementById('btnRegister').addEventListener('click', function () {
+            window.location.href = './';
+        });
+    </script>
 </body>
 </html>
