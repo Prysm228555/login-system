@@ -1,4 +1,4 @@
-# DB setup for login system
+# DB setup for the login system
 To create the database, please use this SQL request.  
 The name of the database (db) can be changed but it must fit the "db.php" content, be sure this two matches, or you won't be able to create or use any account.  
 The table name and attributes cannot be modified without altering the system's operation.
