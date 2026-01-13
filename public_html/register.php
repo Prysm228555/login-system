@@ -13,21 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password_confirm  = $_POST["password_confirm"] ?? "";
 
     if ($name === "" || $mail === "" || $password === "" || $password_confirm === "") {
-        $error = "Tous les champs sont obligatoires.";
+        $error = "All fields are required.";
     } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-        $error = "Adresse email invalide.";
+        $error = "Invalid email address.";
     } elseif (strlen($password) < 6) {
-        $error = "Le mot de passe doit contenir au moins 6 caractères.";
+        $error = "The password must contain at least 6 characters..";
     } elseif ($password !== $password_confirm) {
-        $error = "Les mots de passe ne correspondent pas.";
+        $error = "Passwords do not match.";
     } else {
 
-        // Vérifier si l'email existe déjà
         $stmt = $pdo->prepare("SELECT id FROM users WHERE mail = ?");
         $stmt->execute([$mail]);
 
         if ($stmt->fetch()) {
-            $error = "Un compte existe déjà avec cet email.";
+            $error = "An account already exists with this email address..";
         } else {
 
             // Hachage du mot de passe
@@ -41,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $stmt->execute([$name, $mail, $hash]);
 
-            $success = "Compte créé avec succès. Vous pouvez vous connecter.";
+            $success = "Account successfully created. You can log in now.";
         }
     }
 }
@@ -51,14 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Inscription</title>
+    <title>Register</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./assets/icon.png" />
 </head>
 <body>
     <form method="post">
         <img src="./assets/icon.png" class="logo">
-        <h1>Inscription</h1>
+        <h1>Register</h1>
 
         <?php if ($error): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
@@ -68,23 +67,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p class="success"><?= htmlspecialchars($success) ?></p>
         <?php endif; ?>
 
-        <label for="name">Nom</label>
-        <input type="text" name="name" placeholder="Nom" required>
-        <label for="email">Email</label>
-        <input type="email" name="mail" placeholder="Email" required>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" placeholder="Mot de passe" required>
-        <label for="password_confirm">Confirmer le mot de passe</label>
-        <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" required>
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Name" required>
+        <label for="email">Email address</label>
+        <input type="email" name="mail" placeholder="Email address" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+        <label for="password_confirm">Confirm password</label>
+        <input type="password" name="password_confirm" placeholder="Confirm password" required>
 
         <label for="remember">
             <input type="checkbox" name="remember" style="width: min-content;">
-            Se souvenir de moi
+            Remember me
         </label>
 
         <div class="buttons">
-            <button type="button" class="register" id="btnRegister">J'ai un compte</button>
-            <button type="submit" class="submit">S'inscrire</button>
+            <button type="button" class="register" id="btnRegister">Log in</button>
+            <button type="submit" class="submit">Register</button>
         </div>
     </form>
 

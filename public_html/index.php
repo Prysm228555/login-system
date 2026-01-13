@@ -18,7 +18,7 @@ if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
         }
 
     } catch (Exception $e) {
-        // on ignore silencieusement
+        // ignore silently
     }
 }
 
@@ -32,15 +32,15 @@ if (!isset($_SESSION["user_id"])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil</title>
+    <title>Home</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./assets/icon.png" />
 </head>
 <body>
-    <h1>Bonjour <?= htmlspecialchars($_SESSION["user_name"]) ?></h1>
+    <h1>Hello <?= htmlspecialchars($_SESSION["user_name"]) ?></h1>
 
     <form action="logout.php" method="post">
-        <button type="submit">Se déconnecter</button>
+        <button type="submit">Log out</button>
     </form>
 </body>
 </html>
