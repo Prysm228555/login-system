@@ -5,17 +5,17 @@ if (isset($_SESSION["user_id"])) {
 
     require "db.php";
 
-    // Supprimer le token en base
+    // Delete remember token
     $stmt = $pdo->prepare(
         "UPDATE users SET remember_token = NULL WHERE id = ?"
     );
     $stmt->execute([$_SESSION["user_id"]]);
 }
 
-// Supprimer cookie
+// Delete cookie
 setcookie("remember_me", "", time() - 3600, "/");
 
-// Détruire session
+// Destroy session
 session_destroy();
 
 header("Location: login.php");

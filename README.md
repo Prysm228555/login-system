@@ -45,4 +45,5 @@ user's cookie token in case the user want to stay connected (can be null, hashed
 ### desactivated
 0 : activated (user can use his account)  
 1 : desactivated (user can't use his account but the account still exist and can be recovered)  
-2 : deleted (user can't use his account but the account doesn't exist anymore and can't be recovered)  
+2 : deleted (user can't use his account and the account doesn't exist anymore, user can still create another account)  
+3 : banned (user can't log and can't create another account with his email address)

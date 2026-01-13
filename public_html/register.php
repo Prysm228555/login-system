@@ -22,25 +22,60 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Passwords do not match.";
     } else {
 
-        $stmt = $pdo->prepare("SELECT id FROM users WHERE mail = ?");
+        $stmt = $pdo->prepare("SELECT desactivated FROM users WHERE mail = ?");
         $stmt->execute([$mail]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result && $result['desactivated'] == 3) {
+            $error = "This email adress is banned";
+        } else{
+            if ($result && $result["desactivated"] == 2){
+                $stmt = $pdo->prepare("DELETE FROM users WHERE mail = ?");
+                $stmt->execute([$mail]);
+                $result = false;
+            }
+            if (!$result) {
+                $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        if ($stmt->fetch()) {
-            $error = "An account already exists with this email address..";
-        } else {
+                $stmt = $pdo->prepare(
+                    "INSERT INTO users (name, mail, password, desactivated)
+                     VALUES (?, ?, ?, 0)"
+                );
+                $stmt->execute([$name, $mail, $hash]);
 
-            // Hachage du mot de passe
-            $hash = password_hash($password, PASSWORD_DEFAULT);
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE mail = ?");
+                $stmt->execute([$mail]);
+                $user = $stmt->fetch();
 
-            // Insertion
-            $stmt = $pdo->prepare(
-                "INSERT INTO users (name, mail, password, desactivated)
-                 VALUES (?, ?, ?, 0)"
-            );
+                if ($user && password_verify($password, $user["password"])) {
+                    $_SESSION["user_id"] = $user["id"];
+                    $_SESSION["user_name"] = $user["name"];
+                    if (isset($_POST["remember"])) {
 
-            $stmt->execute([$name, $mail, $hash]);
+                        $token = bin2hex(random_bytes(32));
+                        $token_hash = hash("sha256", $token);
 
-            $success = "Account successfully created. You can log in now.";
+                        $stmt = $pdo->prepare(
+                            "UPDATE users SET remember_token = ? WHERE id = ?"
+                        );
+                        $stmt->execute([$token_hash, $user["id"]]);
+
+                        setcookie(
+                            "remember_me",
+                            $token,
+                            time() + (30 * 24 * 60 * 60),
+                            "/",
+                            "",
+                            false,
+                            true
+                        );
+                    };
+                    header("Location: ./");
+                    exit;
+                }
+            // là
+            } else {
+                $error = "An account already exists with this email address...";
+            }
         }
     }
 }

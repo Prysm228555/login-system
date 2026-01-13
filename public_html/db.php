@@ -1,8 +1,8 @@
 <?php
 $host = "my_mysql";
 $dbname = "db";
-$user = "root";       // adapte si besoin
-$pass = "root123";           // adapte si besoin
+$user = "root";
+$pass = "root123";
 
 try {
     $pdo = new PDO(
