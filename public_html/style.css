@@ -17,26 +17,24 @@ body {
     background: linear-gradient(to bottom right, #2CF376 1%, #1D72EF 100%);
 }
 
+img.logo {
+    width: 20rem;
+    margin: 5rem;
+}
+
 form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin: 2rem;
 
     background-color: rgba(243, 248, 255, 0.3);
     width: min(90%, 400px);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 2rem;
     border: 2px solid rgba(243, 248, 255, 0.7);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5.6px);
     -webkit-backdrop-filter: blur(5.6px);
-}
-
-form img.logo {
-    width: 7rem;
-    display: block;
-    margin: 0 auto;
 }
 
 form h1 {
@@ -47,10 +45,6 @@ form h1 {
 form .error {
     text-align: center;
     color: red;
-    font-weight: bold;
-}
-form .success {
-    text-align: center;
     font-weight: bold;
 }
 
@@ -95,6 +89,9 @@ form .buttons button.submit:hover {
 }
 form .buttons button.register:hover {
     background-color: #2CF376B3;
+}
+form .remember .remember {
+    width: min-content;
 }
 
 

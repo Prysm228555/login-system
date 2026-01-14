@@ -78,37 +78,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="icon" href="./assets/icon.png" />
 </head>
 <body>
-
-<form method="post" class="login-form">
     <img src="./assets/icon.png" class="logo">
-    <h1>Log in</h1>
+    <form method="post" class="login-form">
+        <h1>Log in</h1>
 
-    <?php if ($error): ?>
-        <p class="error"><?= htmlspecialchars($error) ?></p>
-    <?php endif; ?>
+        <?php if ($error): ?>
+            <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
 
-    <label for="mail">Email address</label>
-    <input type="email" name="mail" placeholder="Email address" required>
+        <label for="mail">Email address</label>
+        <input type="email" name="mail" placeholder="Email address" required>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Password" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Password" required>
 
-    <label for="remember">
-        <input type="checkbox" name="remember" style="width: min-content;">
-        Remember me
-    </label>
+        <label for="remember">
+           <input type="checkbox" name="remember" style="width: min-content;">
+            Remember me
+        </label>
 
-    <div class="buttons">
-        <button type="button" class="register" id="btnRegister">Create an account</button>
-        <button type="submit" class="submit">Login</button>
-    </div>
-</form>
+        <div class="buttons">
+            <button type="button" class="register" id="btnRegister">Create an account</button>
+            <button type="submit" class="submit">Login</button>
+        </div>
+    </form>
 
-<script>
-  document.getElementById('btnRegister').addEventListener('click', function () {
-    window.location.href = './register.php';
-  });
-</script>
+    <script>
+        document.getElementById('btnRegister').addEventListener('click', function () {
+            window.location.href = './register.php';
+        });
+    </script>
 
 </body>
 </html>

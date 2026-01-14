@@ -3,7 +3,6 @@ session_start();
 require "db.php";
 
 $error = "";
-$success = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -72,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     header("Location: ./");
                     exit;
                 }
-            // là
             } else {
                 $error = "An account already exists with this email address...";
             }
@@ -90,29 +88,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="icon" href="./assets/icon.png" />
 </head>
 <body>
+    <img src="./assets/icon.png" class="logo">
     <form method="post">
-        <img src="./assets/icon.png" class="logo">
         <h1>Register</h1>
 
-        <?php if ($error): ?>
-            <p class="error"><?= htmlspecialchars($error) ?></p>
-        <?php endif; ?>
-
-        <?php if ($success): ?>
-            <p class="success"><?= htmlspecialchars($success) ?></p>
-        <?php endif; ?>
+        <span class="error" id="error"><?= htmlspecialchars($error) ?></span>
 
         <label for="name">Name</label>
         <input type="text" name="name" placeholder="Name" required>
         <label for="email">Email address</label>
         <input type="email" name="mail" placeholder="Email address" required>
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
         <label for="password_confirm">Confirm password</label>
-        <input type="password" name="password_confirm" placeholder="Confirm password" required>
+        <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm password" required>
 
-        <label for="remember">
-            <input type="checkbox" name="remember" style="width: min-content;">
+        <label for="remember" class="remember">
+            <input type="checkbox" name="remember" class="remember">
             Remember me
         </label>
 
@@ -125,6 +117,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script>
         document.getElementById('btnRegister').addEventListener('click', function () {
             window.location.href = './';
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const password = document.getElementById("password");
+            const confirm = document.getElementById("password_confirm");
+            const message = document.getElementById("error");
+
+            confirm.addEventListener("input", () => {
+                if (password.value === confirm.value) {
+                    message.textContent = "";
+                } else {
+                    message.textContent = "Passwords do not match";
+                }
+            });
         });
     </script>
 </body>
