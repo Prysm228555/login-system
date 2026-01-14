@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "All fields are required.";
     } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email address.";
-    } elseif (strlen($password) < 6) {
-        $error = "The password must contain at least 6 characters..";
+    } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/", $password)) {
+        $error = "The password must contain at least 6 characters, 1 cap..";
     } elseif ($password !== $password_confirm) {
         $error = "Passwords do not match.";
     } else {
