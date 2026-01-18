@@ -11,4 +11,42 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     background: linear-gradient(to bottom right, #2CF376 1%, #1D72EF 100%);
+    overflow: hidden;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem 1rem;
+    position: relative;
+}
+nav .buttons {
+    display: flex;
+}
+nav .buttons button {
+    background-color: rgba(243, 248, 255, 0.3);
+    padding: 1rem;
+    margin: .5rem;
+    border-radius: 100vh;
+    border: 2px solid rgba(243, 248, 255, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    transition: .3s;
+    -webkit-border-radius: 100vh;
+    -moz-border-radius: 100vh;
+    -ms-border-radius: 100vh;
+    -o-border-radius: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav .buttons button:hover {
+    transform: scale(1.1);
+    border: 0 rgba(243, 248, 255, 0.7);
+    background-color: #2CF376B3;
+}
+nav .buttons button img {
+    width: 3rem;
 }

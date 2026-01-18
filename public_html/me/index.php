@@ -24,7 +24,7 @@ if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
 }
 
 if (!isset($_SESSION["user_id"])) {
-    header("Location: ./login");
+    header("Location: ../login");
     exit;
 }
 ?>
@@ -34,19 +34,19 @@ if (!isset($_SESSION["user_id"])) {
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" href="./src/css/main.css">
-    <link rel="icon" href="./assets/icon.png" />
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="icon" href="../assets/icon.png" />
 </head>
 <body>
     <nav>
-        <h1>Welcome <?= htmlspecialchars($_SESSION["user_name"]) ?></h1>
+        <h1><?= htmlspecialchars($_SESSION["user_name"]) ?>'s account</h1>
         <div class="buttons">
-            <button onclick="window.location.href='./'"><img src="./assets/home.png" alt="Home" title="Home"></button>
+            <button onclick="window.location.href='../'"><img src="../assets/home.png" alt="Home" title="Home"></button>
             <?php if ($_SESSION["user_role"] >= 2){ ?>
-                <button onclick="window.location.href='./dashboard'"><img src="./assets/dash.png" alt="Dashboard" title="Dashboard"></button>
+                <button onclick="window.location.href='../dashboard'"><img src="../assets/dash.png" alt="Dashboard" title="Dashboard"></button>
             <?} ?>
-            <button onclick="window.location.href='./me'"><img src="./assets/account.png" alt="My Account" title="My Account"></button>
-            <form action="./src/logout.php" method="post"><button type="submit" class="logout"><img src="./assets/logout.png" alt="logout" title="Logout"></button></form>
+            <button onclick="window.location.href='../me'"><img src="../assets/account.png" alt="My Account" title="My Account"></button>
+            <form action="../src/logout.php" method="post"><button type="submit" class="logout"><img src="../assets/logout.png" alt="logout" title="Logout"></button></form>
         </div>
     </nav>
 </body>
