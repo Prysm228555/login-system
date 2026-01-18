@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: linear-gradient(to bottom right, #2CF376 1%, #1D72EF 100%);
+}

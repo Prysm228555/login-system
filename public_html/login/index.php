@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "db.php";
+require "../src/db.php";
 
 if (!isset($_SESSION["user_id"]) && isset($_COOKIE["remember_me"])) {
 
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 true
             );
         };
-        header("Location: ./");
+        header("Location: ../");
         exit;
     } else {
         if ($user && $user["desactivated"] == 1){
@@ -74,11 +74,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Log in</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./assets/icon.png" />
+    <link rel="stylesheet" href="../src/css/login.css">
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="icon" href="../assets/icon.png" />
 </head>
 <body>
-    <img src="./assets/icon.png" class="logo">
+    <img src="../assets/icon.png" class="logo">
     <form method="post" class="login-form">
         <h1>Log in</h1>
 
@@ -105,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <script>
         document.getElementById('btnRegister').addEventListener('click', function () {
-            window.location.href = './register.php';
+            window.location.href = '../register';
         });
     </script>
 

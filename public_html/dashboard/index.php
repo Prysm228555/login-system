@@ -32,7 +32,7 @@ if (!isset($_SESSION["user_id"])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="icon" href="../assets/icon.png" />
 </head>

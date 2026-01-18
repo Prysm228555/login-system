@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "db.php";
+require "../src/db.php";
 
 $error = "";
 
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email address.";
     } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/", $password)) {
-        $error = "The password must contain at least 6 characters, 1 cap..";
+        $error = "The password must contain at least 6 characters, 1 cap ..";
     } elseif ($password !== $password_confirm) {
         $error = "Passwords do not match.";
     } else {
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             true
                         );
                     };
-                    header("Location: ./");
+                    header("Location: ../");
                     exit;
                 }
             } else {
@@ -84,11 +84,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./assets/icon.png" />
+    <link rel="stylesheet" href="../src/css/login.css">
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="icon" href="../assets/icon.png" />
 </head>
 <body>
-    <img src="./assets/icon.png" class="logo">
+    <img src="../assets/icon.png" class="logo">
     <form method="post">
         <h1>Register</h1>
 
@@ -109,14 +110,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </label>
 
         <div class="buttons">
-            <button type="button" class="register" id="btnRegister">Log in</button>
+            <button type="button" class="login" id="btnLogin">Log in</button>
             <button type="submit" class="submit">Register</button>
         </div>
     </form>
 
     <script>
-        document.getElementById('btnRegister').addEventListener('click', function () {
-            window.location.href = './';
+        document.getElementById('btnLogin').addEventListener('click', function () {
+            window.location.href = '../login';
         });
 
         document.addEventListener("DOMContentLoaded", () => {

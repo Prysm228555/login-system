@@ -18,5 +18,5 @@ setcookie("remember_me", "", time() - 3600, "/");
 // Destroy session
 session_destroy();
 
-header("Location: login.php");
+header("Location: ../login");
 exit;
