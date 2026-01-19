@@ -33,7 +33,7 @@ if (!isset($_SESSION["user_id"])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title><?= htmlspecialchars($_SESSION["user_name"]) ?>'s account</title>
     <link rel="stylesheet" href="../src/css/main.css">
     <link rel="icon" href="../assets/icon.png" />
 </head>
